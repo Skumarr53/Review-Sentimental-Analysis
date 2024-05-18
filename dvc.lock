@@ -1,0 +1,98 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/components/data_ingestion.py
+    deps:
+    - path: artifacts/database.sqlite
+      hash: md5
+      md5: a50334684f230502a9ce984cb749514f
+      size: 372798464
+    - path: src/components/data_ingestion.py
+      hash: md5
+      md5: 70ef3181c9676d1e5bfb7ffe4a21dbd2
+      size: 5001
+    outs:
+    - path: artifacts/raw.csv
+      hash: md5
+      md5: 2cec79de673d7a67cfcc7e8225f8ef6b
+      size: 8160368
+    - path: artifacts/test.csv
+      hash: md5
+      md5: d3906e7abb180fd6ea9400b710973fb2
+      size: 1599528
+    - path: artifacts/train.csv
+      hash: md5
+      md5: 8985f3ec694dbdd9feac47674b2c870b
+      size: 6560940
+  data_preprocessing:
+    cmd: python src/components/data_preprocessing.py
+    deps:
+    - path: artifacts/test.csv
+      hash: md5
+      md5: d3906e7abb180fd6ea9400b710973fb2
+      size: 1599528
+    - path: artifacts/train.csv
+      hash: md5
+      md5: 8985f3ec694dbdd9feac47674b2c870b
+      size: 6560940
+    - path: src/components/data_preprocessing.py
+      hash: md5
+      md5: 593459795fbe3cd7258d4d8bcc93c886
+      size: 3202
+    - path: src/utils/helper.py
+      hash: md5
+      md5: ccd113ad818265de5b793e998d155402
+      size: 1468
+    - path: src/utils/utils.py
+      hash: md5
+      md5: 1777e4458ec11a8a9475ce395b7038f1
+      size: 3583
+    outs:
+    - path: artifacts/test_processed.csv
+      hash: md5
+      md5: aa0fa72c9053547ba437b8ac68460b74
+      size: 1513788
+    - path: artifacts/train_processed.csv
+      hash: md5
+      md5: caf6d8d2058f5ee65bc38ee920580e19
+      size: 6177462
+  data_transformation:
+    cmd: python src/components/data_transformation.py
+    deps:
+    - path: artifacts/test_processed.csv
+      hash: md5
+      md5: aa0fa72c9053547ba437b8ac68460b74
+      size: 1513788
+    - path: artifacts/train_processed.csv
+      hash: md5
+      md5: caf6d8d2058f5ee65bc38ee920580e19
+      size: 6177462
+    - path: src/components/data_transformation.py
+      hash: md5
+      md5: 8ed70ec826522234af43e98a5c43d9b8
+      size: 3550
+    - path: src/utils/helper.py
+      hash: md5
+      md5: ccd113ad818265de5b793e998d155402
+      size: 1468
+    - path: src/utils/transformers.py
+      hash: md5
+      md5: 7748c98ab96366da0db5eda7503d7a8e
+      size: 3142
+    - path: src/utils/utils.py
+      hash: md5
+      md5: 1777e4458ec11a8a9475ce395b7038f1
+      size: 3583
+    outs:
+    - path: artifacts/test_transformed.npy
+      hash: md5
+      md5: 30974baa7c149499f3e3a2cfbff41779
+      size: 18394608
+    - path: artifacts/train_transformed.npy
+      hash: md5
+      md5: 79f8af24c8e3fd637b6818687c6377b6
+      size: 73633416
+    - path: artifacts/transformer.pkl
+      hash: md5
+      md5: cab0949c94fd021fec68b2f6022361c6
+      size: 282321353

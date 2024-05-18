@@ -1,0 +1,50 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore environment files
+.env
+
+# Ignore virtual environment directories
+venv/
+env/
+.venv/
+
+# Ignore data and datasets
+ignore/
+
+# Ignore build and distribution directories
+build/
+dist/
+*.egg-info/
+
+# Ignore Docker-related files (excluding Dockerfile)
+.dockerignore
+docker-compose.yml
+
+# Ignore IDE and editor directories and files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Ignore Git-related files
+.git/
+.gitignore
+
+# Ignore node_modules for JavaScript/TypeScript projects
+node_modules/
+
+# Ignore any secret keys or credentials
+secrets/
+*.pem
+*.key
+
+# Add any other files or directories specific to your project that should be ignored
+artifacts/*.csv
+artifacts/*.npy

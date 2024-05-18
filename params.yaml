@@ -1,0 +1,11 @@
+model_training:
+  LogisticRegression:
+    C: [0.1, 1, 5, 10]
+    solver: ['liblinear']
+  NaiveBayes:
+    var_smoothing: [1e-9, 1e-8, 1e-7]
+  SVM:
+    C: [0.1, 1, 10]
+    kernel: ['linear', 'rbf']
+    gamma: ['scale', 'auto']
+

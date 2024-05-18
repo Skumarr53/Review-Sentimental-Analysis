@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  airflow:
+    build:
+      context: ./
+      dockerfile: Dockerfile.airflow
+    image: skumar88/food_review_airflow
+    container_name: food-review-classification-airflow
+    environment:
+      - AIRFLOW__CORE__DAGBAG_IMPORT_TIMEOUT=1000
+    ports:
+      - "8080:8080"
+    
+  streamlitapp:
+    build:
+      context: ./
+      dockerfile: Dockerfile.flask
+    image: skumar88/food_review_flask
+    container_name: food-review-classification-flask
+    ports:
+      - "5000:5000"

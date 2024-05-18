@@ -1,0 +1,51 @@
+stages:
+  data_ingestion:
+    cmd: python src/components/data_ingestion.py
+    deps:
+      - src/components/data_ingestion.py
+      - artifacts/database.sqlite
+    outs:
+      - artifacts/raw.csv
+      - artifacts/train.csv
+      - artifacts/test.csv
+
+  data_preprocessing:
+    cmd: python src/components/data_preprocessing.py
+    deps:
+      - src/components/data_preprocessing.py
+      - src/utils/helper.py
+      - src/utils/utils.py
+      - artifacts/train.csv
+      - artifacts/test.csv
+    outs:
+      - artifacts/train_processed.csv
+      - artifacts/test_processed.csv
+
+  data_transformation:
+    cmd: python src/components/data_transformation.py
+    deps:
+      - src/components/data_transformation.py
+      - src/utils/helper.py
+      - src/utils/utils.py
+      - src/utils/transformers.py
+      - artifacts/train_processed.csv
+      - artifacts/test_processed.csv
+    outs:
+      - artifacts/transformer.pkl
+      - artifacts/train_transformed.npy
+      - artifacts/test_transformed.npy
+
+  model_training:
+    cmd: python src/components/model_trainer.py
+    deps:
+      - src/components/model_trainer.py
+      - src/utils/utils.py
+      - src/config/constants.py
+      - artifacts/train_transformed.npy
+      - artifacts/test_transformed.npy
+    outs:
+      - artifacts/model.pkl
+    metrics:
+      - metrics.json
+    params:
+      - params.yaml

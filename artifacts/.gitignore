@@ -1,0 +1,12 @@
+/train.csv
+/test.csv
+/database.sqlite
+/raw.csv
+/train_processed.csv
+/test_processed.csv
+/test_processed.csv.npy
+/test_transformed.npy
+test_processed.csv.npy 
+train_processed.csv.npy 
+train_transformed.npy
+transformer.pkl

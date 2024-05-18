@@ -1,0 +1,20 @@
+FROM python:3.10-slim-buster
+
+WORKDIR /app
+COPY requirements.txt /app/
+
+
+RUN apt update -y && \
+    apt-get update && \
+    apt-get install -y curl && \
+    pip install -r requirements.txt
+
+COPY . /app
+RUN gdown --id 1LEJHvh43e4jAPMLtbAJxICgR_RJcU6Or -O /app/artifacts/transformer.pkl
+
+# Set Streamlit to use port 5000
+ENV STREAMLIT_SERVER_PORT=5000
+
+ENV PYTHONPATH=$PYTHONPATH:/app
+
+CMD ["streamlit", "run", "app.py"]
