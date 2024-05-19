@@ -89,6 +89,10 @@ The trained model, along with its parameters and performance metrics, is saved a
   - **Recall**: 0.9370
   - **F1 Score**: 0.9353
 
+
+#### Best Model paramerters 
+![](snapshots/BestModel_mlflow.png)
+
 ## Data Verisoing and 
 
 ### DVC Integration for Data Versioning
@@ -154,6 +158,10 @@ Data Version Control (DVC) is integrated into the pipeline to track different ve
 ### Model Tracking and Versioning with MLflow
 
 Model tracking and versioning are essential for managing the lifecycle of machine learning models. Using MLflow, the `ModelTrainer` class handles the entire process of training, evaluating, tracking, and versioning models, ensuring that each experiment is logged, the best model is identified, and models are registered for deployment.
+
+
+#### Model comparison 
+![](snapshots/ML_Model%20Comp.png)
 
 **Tracking and Versioning Process:**
 
