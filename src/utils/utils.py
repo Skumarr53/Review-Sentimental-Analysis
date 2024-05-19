@@ -1,8 +1,9 @@
-import os
+import sys, os
 from src.exception.exception import DetailedError
 from src.logger.logger import logging
 import numpy as np
 import pickle
+import torch
 from typing import Dict, List, Any
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
@@ -23,13 +24,12 @@ def save_object(obj, file_path):
 
 def load_object(file_path):
     try:
-        
-        # Loading the object using pickle
         with open(file_path, 'rb') as file:
             return pickle.load(file)
     except Exception as e:
         logging.exception(f"Error loading file: {e}")
-        raise DetailedError(e)
+        raise DetailedError(f"Error occurred in {__file__} at line: {sys.exc_info()[-1].tb_lineno} Error Message: {str(e)}")
+
     
 def evaluate_classification(y_test, y_pred):
     accuracy = accuracy_score(y_test, y_pred)

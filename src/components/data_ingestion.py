@@ -100,7 +100,7 @@ class DataIngestion:
             self.save_data_to_csv(train_set, self.ingestion_config.train_data_path)
             self.save_data_to_csv(test_set, self.ingestion_config.test_data_path)
             logging.info("Train-test split completed.")
-            return (self.ingestion_config.train_data_path, self.ingestion_config.test_data_path)
+            return (train_set, train_set)
         except Exception as e:
             logging.error("Error during train-test split.")
             raise DetailedError(e)

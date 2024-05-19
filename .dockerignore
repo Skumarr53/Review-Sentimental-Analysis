@@ -48,3 +48,7 @@ secrets/
 # Add any other files or directories specific to your project that should be ignored
 artifacts/*.csv
 artifacts/*.npy
+
+
+airflow/airflow.cfg
+airflow/airflow.db

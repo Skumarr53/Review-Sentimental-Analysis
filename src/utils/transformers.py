@@ -1,23 +1,22 @@
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.feature_extraction.text import TfidfVectorizer
-from transformers import DistilBertTokenizer, DistilBertModel
-import spacy
-import numpy as np
-from tqdm import tqdm
 from sentence_transformers import SentenceTransformer
 
 
 class TFIDF_BERT_transformer(BaseEstimator, TransformerMixin):
-
-    def __init__(self, bert_model_name='distilbert-base-nli-stsb-mean-tokens', TFIDF_model=None):
+    def __init__(self, bert_model_name='distilbert-base-nli-stsb-mean-tokens'):
         self.bert_model_name = bert_model_name
-        self.model = SentenceTransformer(self.bert_model_name)
-        self.embeddings_cache = {}
+        self.model = None  # Initialize as None
+    
+    def _initialize_model(self):
+        if self.model is None:
+            self.model = SentenceTransformer(self.bert_model_name)
 
     def fit(self, X, y=None):
+        self._initialize_model()  # Ensure model is initialized
         return self
     
     def transform(self, X):
+        self._initialize_model()  # Ensure model is initialized
         return self.model.encode(X)
 
 
